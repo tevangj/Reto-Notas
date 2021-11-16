@@ -1,5 +1,5 @@
 let alumnos = [];
-let signaturas = [];
+let asignaturas = [];
 let notas = [];
  
 function getDatosAlumnos(url){
@@ -39,10 +39,14 @@ function setDataAlumnos(datos){
 }
 
 function setDataAsignaturas(datos){
-    signaturas.push(datos);
-    asignaturasBase(signaturas);
+    asignaturas.push(datos);
+    asignaturasBase(asignaturas);
 }
 
+function setDataNotas(datos){
+    notas.push(datos);
+    return notas;
+}
 
 function alumnosBase(baseDeDatos){
     for (let index = 0; index < baseDeDatos.length; index++) {
@@ -73,39 +77,19 @@ function asignaturasBase(baseDeDatos){
         for(let j =0; j < a.length ; j++){
             let html = "";
             const element = a[j];
-            html += "<tr id='registro_"+(j+1)+"'>";
+            //html += '<tr id="registro_"+(j+1)+"">';
+            html += '<tr id="registro_'+(j+1)+'" onclick="alert(0)">';     
+            
             html += "   <th scope='row'>" + element.Asignatura + "</th>";
             html += "   <td><img src='" + element.Imagen + "' /></td>";
             html += "</tr>";
             let tabla = document.getElementById("tabla_asignaturas");
-            tabla.insertAdjacentHTML('beforeend', html);
+            tabla.insertAdjacentHTML('beforeend', html); 
+
         }
     }  
             
 }    
-    
-            /*
-           let evento = document.getElementById("registro_"+ (j+1));
-            evento.addEventListener('click', function(){
-                var xhr = new XMLHttpRequest(); 
-                xhr.open("GET","https://6189d55a34b4f400177c4283.mockapi.io/getNotas" , true);
-                xhr.onload = function(){
-                    let data = JSON.parse(xhr.response);
-                    notas.push(data);
-                
-
-
-
-
-        }, false);
-
-           }
-        }
-    }
-
-*/
-
-
 
 
 function pegarAlumno(){
